@@ -4,11 +4,15 @@ echo "Checking out submodules"
 
 git submodule update --init
 
+#create dockcross cmd here
+cd 3rdPartyTools/dockcross/
+docker run --rm dockcross/linux-armv5-uclibc > ../../dockcross-run
+cd ../../
+chmod +x dockcross-run
+
 echo "Compiling v4lrtspserver"
-cd 3rdPartyTools/v4l2rtspserver
-../dockcross/dockcross-linux-armv5-uclibc cmake -DLIVE555CFLAGS="-DNEWLOCALE_NOT_USED=1  -DBSD=1 -DSOCKLEN_T=socklen_t -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE=1 -DALLOW_RTSP_SERVER_PORT_REUSE=1" .
-../dockcross/dockcross-linux-armv5-uclibc make
-cp uv4l ../../SD_Card/
+./dockcross-run ./build-v4lrs.sh
+cp 3rdPartyTools/v4l2rtspserver.git/uv4l SD_Card/
 
 
 #prep anyka

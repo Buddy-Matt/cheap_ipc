@@ -1,6 +1,3 @@
 [submodule "3rdPartyTools/dockcross"]
 	path = 3rdPartyTools/dockcross
 	url = git@github.com:dockcross/dockcross.git
-[submodule "3rdPartyTools/v4l2rtspserver.git"]
-	path = 3rdPartyTools/v4l2rtspserver.git
-	url = git@github.com:mpromonet/v4l2rtspserver.git
