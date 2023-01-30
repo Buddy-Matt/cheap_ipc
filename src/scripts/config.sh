@@ -17,12 +17,12 @@ sleep 1
 #Sort out the timezone using the "offical" method
 source /etc/jffs2/time_zone.sh
 
-#Wait for network connectivity
+#Wait for network connectivity (check google dns servers)
 while ! ping -c 1 -W 1 192.168.13.254; do
-    echo "Waiting for 1.2.3.4 - network interface might be down..."
+    echo "Waiting for router - network interface might be down..."
     sleep 1
 done
 
 #Set the time
 logger setting time
-ntpd -N -p uk.pool.ntp.org
+ntpd -N -p 192.168.13.254
