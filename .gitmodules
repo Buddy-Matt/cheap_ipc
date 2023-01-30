@@ -4,3 +4,6 @@
 [submodule "3rdPartyTools/v4l2rtspserver"]
 	path = 3rdPartyTools/v4l2rtspserver
 	url = git@github.com:mpromonet/v4l2rtspserver.git
+[submodule "3rdPartyTools/zsgx1hacks"]
+	path = 3rdPartyTools/zsgx1hacks
+	url = https://github.com/ant-thomas/zsgx1hacks
