@@ -7,3 +7,6 @@
 [submodule "3rdPartyTools/zsgx1hacks"]
 	path = 3rdPartyTools/zsgx1hacks
 	url = https://github.com/ant-thomas/zsgx1hacks
+[submodule "3rdPartyTools/anyka_v380ipcam_experiments"]
+	path = 3rdPartyTools/anyka_v380ipcam_experiments
+	url = https://github.com/ricardojlrufino/anyka_v380ipcam_experiments
