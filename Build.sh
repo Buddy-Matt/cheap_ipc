@@ -12,10 +12,19 @@ chmod +x dockcross-run
 
 echo "Compiling v4lrtspserver"
 ./dockcross-run ./build-v4lrs.sh
-cp 3rdPartyTools/v4l2rtspserver.git/uv4l SD_Card/
 
 
-#prep anyka
-#cd 3rdPartyTools/anyka
-#rep -rl arm-none-linux-gnueabi | xargs sed -i s/arm-none-linux-gnueabi/armv5-unknown-linux-gnueabi/g
 
+
+mkdir -p SD_Card/Factory
+mkdir -p SD_Card/bin
+mkdir -p SD_Card/www
+
+#main script to intercept and stop the normal boot stuff
+cp src/scripts/config.sh SD_Card/Factory/
+#webserver
+cp 3rdPartyTools/zsgx1hacks/sdcard/hack/busybox-armv6l SD_Card/bin/
+cp -r src/webserver SD_Card/www
+
+#v4l2rtspserver
+cp 3rdPartyTools/v4l2rtspserver/v4l2rtspserver SD_Card/bin

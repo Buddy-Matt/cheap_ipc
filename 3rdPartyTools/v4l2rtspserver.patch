@@ -1,3 +1,18 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 7bcb6ba..50c9536 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -30,8 +30,10 @@ endif()
+ 
+ # define executable to build
+ include_directories("inc")
++link_libraries("-static")
+ add_executable(${PROJECT_NAME} main.cpp)
+ 
++
+ if (COVERAGE)
+ 	set(COVERAGE_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
+ 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COVERAGE_FLAGS}")
 diff --git a/inc/BaseServerMediaSubsession.h b/inc/BaseServerMediaSubsession.h
 index 1ab3d8d..d657c59 100755
 --- a/inc/BaseServerMediaSubsession.h
