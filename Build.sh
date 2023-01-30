@@ -14,8 +14,6 @@ echo "Compiling v4lrtspserver"
 ./dockcross-run ./build-v4lrs.sh
 
 
-
-
 mkdir -p SD_Card/Factory
 mkdir -p SD_Card/bin
 mkdir -p SD_Card/www
@@ -23,7 +21,7 @@ mkdir -p SD_Card/www
 #main script to intercept and stop the normal boot stuff
 cp src/scripts/config.sh SD_Card/Factory/
 #webserver
-cp 3rdPartyTools/zsgx1hacks/sdcard/hack/busybox-armv6l SD_Card/bin/
+cp 3rdPartyTools/zsgx1hacks/sdcard/hack/busybox-armv6l SD_Card/bin/busybox
 cp -r src/webserver SD_Card/www
 
 #v4l2rtspserver
