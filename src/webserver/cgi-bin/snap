@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+echo -e "Content-type: image/jpeg\n"
+export LD_LIBRARY_PATH=/mnt/lib
+/mnt/myCam 1> /dev/null 2> /dev/null
+cat /tmp/out.jpg

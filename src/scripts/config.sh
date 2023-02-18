@@ -12,7 +12,7 @@ sleep 1
 /usr/sbin/net_manage.sh &
 
 #start a lightweight http server that can do stuff like turn the lights on & off
-/mnt/bin/busybox httpd -h /mnt/www/
+/mnt/bin/busybox httpd -h /mnt/www/ -p 8080
 
 #Sort out the timezone using the "offical" method
 source /etc/jffs2/time_zone.sh

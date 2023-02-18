@@ -1,0 +1,16 @@
+{
+  "files.associations": {
+    "*.ino": "cpp",
+    "ak_common.h": "c",
+    "ak_vi.h": "c",
+    "ak_venc.h": "c",
+    "*.tcc": "cpp",
+    "unordered_map": "cpp",
+    "fstream": "cpp",
+    "istream": "cpp",
+    "numeric": "cpp",
+    "ostream": "cpp",
+    "sstream": "cpp",
+    "*.inc": "cpp"
+  }
+}
