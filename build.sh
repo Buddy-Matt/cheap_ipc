@@ -67,6 +67,11 @@ cp -rv src/webserver/. SD_Card/www
 
 #snapshot
 cp -v src/imageGrab/myCam SD_Card/bin
+cp -v src/scripts/runImageGrab.sh SD_Card/bin
+
+#demo snapshotter
+cp -v 3rdPartyTools/anyka_v380ipcam_experiments/apps/ak_snapshot/ak_snapshot SD_Card/bin
+cp -v src/scripts/runAK.sh SD_Card/bin
 
 echo ""
 echo "****************"

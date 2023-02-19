@@ -11,6 +11,7 @@
 #include "ak_vi.h"
 //#include "ak_venc.h"
 
+#include "http_server.h"
 
 #include "defs.h"
 #include "log.h"
@@ -26,7 +27,7 @@ void *vi_handle = NULL;						//vi operating handle
 struct video_channel_attr attr;				//vi channel attribute
 struct video_resolution res;				//max sensor resolution
 
-const char *cfg = "/mnt/sdcard/CAM/isp";
+const char *cfg = "/etc/jffs2/isp_gc1054.conf";
 
 int keepCapturing = 1;
 
@@ -36,6 +37,12 @@ void SIGINT_handler(int s){
    usleep(200);
    exit(1);
 }
+
+struct snapshot_t snapshot_ref = {
+	.count = 0,
+	.ready = NULL,
+	.capture = 0
+};
 
 void stop_capture(){
 
@@ -342,6 +349,8 @@ int height, int quality)
 
 void debug_capture(unsigned char *rawimg, unsigned int len){
 
+if(snapshot_ref.capture == 1){
+
 		char bmp_data_path[50];
 		sprintf(bmp_data_path, "%s/preview.bmp", "/tmp");
 		logw(" >>>>> Saving snapshot: %s", bmp_data_path);
@@ -353,6 +362,13 @@ void debug_capture(unsigned char *rawimg, unsigned int len){
 		FILE *fp =  fopen("/tmp/out.jpg","wb+");
 		put_jpeg_yuv420p_file(fp,rawimg,res_w,res_h,90);
 		fclose(fp);
+
+		snapshot_ref.count++;
+		snapshot_ref.capture = 0;
+		pthread_cond_signal(&snapshot_ref.ready);
+
+}
+
 }
 
 void capture_loop(){
@@ -388,11 +404,13 @@ void capture_loop(){
 				// release frame data
 				ak_vi_release_frame(vi_handle, &frame);
 
-			keepCapturing = 0;
 			} else {
 						// not ready， sleep to release CPU
 				ak_sleep_ms(10);
 			}
+
+			//small sleep
+			ak_sleep_ms(25);
 		}
 		__LOG_TIME_END("capture");
 
@@ -407,7 +425,7 @@ int main(int argc, char *argv[]) {
 	logi("capture_init...");
 	int status = capture_init();
 
-//	start_server(3000, SNAPSHOT_DEFAULT_DIR, &snapshot_ref);
+	start_server(3000, SNAPSHOT_DEFAULT_DIR, &snapshot_ref);
 
 	if(status){
 		logi("loop...");

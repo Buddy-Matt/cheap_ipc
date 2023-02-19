@@ -26,3 +26,6 @@ done
 #Set the time
 logger setting time
 ntpd -N -p 192.168.13.254
+
+#fire up the snapshot tool until I can make something better
+/mnt/bin/runImageGrab.sh &
