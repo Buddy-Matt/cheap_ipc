@@ -140,12 +140,21 @@ int capture_init(){
 		return -1;
 	}
 
+
 	/*
 	 * step 5: start capture frames
 	 */
 	ret = ak_vi_capture_on(vi_handle);
 	logv("ak_vi_capture_on\n");
 	if (ret) {
+		ak_vi_close(vi_handle);
+		return -1;
+	}
+
+		/* step 4a - Flip & Mirror*/
+	ret = ak_vi_set_flip_mirror(vi_handle,1,1);
+	if (ret) {
+		loge("ak_vi_set_flip_mirror FAILLL GO TO CLOSE\n");
 		ak_vi_close(vi_handle);
 		return -1;
 	}
